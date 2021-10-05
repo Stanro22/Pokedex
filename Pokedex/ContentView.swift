@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-            PokemonCell()
-        }
-    }
+    let pokemons: [Pokemon] = Pokemon.testList
+
+     var body: some View {
+         List(pokemons) { pokemon in
+             PokemonCell(pokemon: pokemon)
+         }
+     }
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -8,19 +8,25 @@
 import SwiftUI
 
 struct PokemonCell: View {
+    let pokemon: Pokemon
+
     var body: some View {
         HStack {
-         Image(systemName: "photo")
-            VStack(alignment: .leading) {
-             Text("My Pokemon").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-             Text("3 abilities")
-         }
+            Image(pokemon.imageName)
+             .resizable()
+             .frame(width: 54, height: 54)
+             VStack(alignment: .leading) {
+                 Text(pokemon.name)
+                     .font(.title)
+                 Text("\(pokemon.abilityCount) abilities")
+                     .foregroundColor(.secondary)
+             }
         }
     }
 }
 
 struct PokemonCell_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonCell()
+        PokemonCell(pokemon: .testPokemon)
     }
 }
