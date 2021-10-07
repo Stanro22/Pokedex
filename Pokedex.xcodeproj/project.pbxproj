@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7385ABA6270EDB0C00C191A6 /* PokemonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7385ABA5270EDB0C00C191A6 /* PokemonDetailView.swift */; };
+		7385ABA9270EEB0400C191A6 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 7385ABA8270EEB0400C191A6 /* KeychainAccess */; };
+		7385ABAB270EF0A700C191A6 /* Local Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7385ABAA270EF0A700C191A6 /* Local Storage.swift */; };
+		7385ABAD270EF20200C191A6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7385ABAC270EF20200C191A6 /* LoginView.swift */; };
 		73A1AE9F270C5161007935E9 /* PokedexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A1AE9E270C5161007935E9 /* PokedexApp.swift */; };
 		73A1AEA1270C5161007935E9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A1AEA0270C5161007935E9 /* ContentView.swift */; };
 		73A1AEA3270C5163007935E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73A1AEA2270C5163007935E9 /* Assets.xcassets */; };
@@ -38,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		7385ABA5270EDB0C00C191A6 /* PokemonDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailView.swift; sourceTree = "<group>"; };
+		7385ABAA270EF0A700C191A6 /* Local Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Local Storage.swift"; sourceTree = "<group>"; };
+		7385ABAC270EF20200C191A6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		73A1AE9B270C5161007935E9 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73A1AE9E270C5161007935E9 /* PokedexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexApp.swift; sourceTree = "<group>"; };
 		73A1AEA0270C5161007935E9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7385ABA9270EEB0400C191A6 /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +113,8 @@
 				73A1AECA270C588D007935E9 /* PokemonCell.swift */,
 				73A1AECC270C5E3F007935E9 /* Pokemon.swift */,
 				7385ABA5270EDB0C00C191A6 /* PokemonDetailView.swift */,
+				7385ABAA270EF0A700C191A6 /* Local Storage.swift */,
+				7385ABAC270EF20200C191A6 /* LoginView.swift */,
 			);
 			path = Pokedex;
 			sourceTree = "<group>";
@@ -152,6 +160,9 @@
 			dependencies = (
 			);
 			name = Pokedex;
+			packageProductDependencies = (
+				7385ABA8270EEB0400C191A6 /* KeychainAccess */,
+			);
 			productName = Pokedex;
 			productReference = 73A1AE9B270C5161007935E9 /* Pokedex.app */;
 			productType = "com.apple.product-type.application";
@@ -224,6 +235,9 @@
 				Base,
 			);
 			mainGroup = 73A1AE92270C5161007935E9;
+			packageReferences = (
+				7385ABA7270EEB0400C191A6 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+			);
 			productRefGroup = 73A1AE9C270C5161007935E9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -267,9 +281,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				73A1AEA1270C5161007935E9 /* ContentView.swift in Sources */,
+				7385ABAD270EF20200C191A6 /* LoginView.swift in Sources */,
 				7385ABA6270EDB0C00C191A6 /* PokemonDetailView.swift in Sources */,
 				73A1AECD270C5E3F007935E9 /* Pokemon.swift in Sources */,
 				73A1AE9F270C5161007935E9 /* PokedexApp.swift in Sources */,
+				7385ABAB270EF0A700C191A6 /* Local Storage.swift in Sources */,
 				73A1AECB270C588D007935E9 /* PokemonCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -613,6 +629,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7385ABA7270EEB0400C191A6 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7385ABA8270EEB0400C191A6 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7385ABA7270EEB0400C191A6 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 73A1AE93270C5161007935E9 /* Project object */;
 }

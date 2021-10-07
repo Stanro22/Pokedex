@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import KeychainAccess
 
 struct ContentView: View {
     let pokemons: [Pokemon] = Pokemon.testList
@@ -16,6 +17,11 @@ struct ContentView: View {
                  NavigationLink(destination: PokemonDetailView(pokemon: pokemon)) {
                      PokemonCell(pokemon: pokemon)
                  }.navigationTitle("Pokemon's")
+                     .navigationBarItems(trailing:
+                       NavigationLink(destination: LoginView()) {
+                       Image(systemName: "person.fill")
+                     }
+                )
              }
          }
      }
