@@ -12,11 +12,13 @@ struct PokemonDetailView: View {
     @Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
-        Image(pokemon.originalName)
-            .resizable()
-            .frame(width: 200, height: 200)
-            .aspectRatio(contentMode: .fit)
-            .navigationTitle(pokemon.name)
+        VStack {
+            Image(pokemon.originalName)
+                .resizable()
+                .frame(width: 200, height: 200)
+                .aspectRatio(contentMode: .fit)
+                
+        }.navigationTitle(pokemon.name)
             .navigationBarItems(
                 //leading:
                 //Button("Go back") {
@@ -28,8 +30,8 @@ struct PokemonDetailView: View {
                 ) {
                     Image(systemName: "star")
                 }
-            )
-        }
+        )
+    }
 }
 
 struct PokemonDetailView_Previews: PreviewProvider {
