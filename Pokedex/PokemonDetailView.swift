@@ -10,6 +10,8 @@ import SwiftUI
 struct PokemonDetailView: View {
     let pokemon: Pokemon
     @Environment(\.presentationMode) private var presentationMode
+    @State private var didAppear = false
+    @State private var catchPokemon = false
     
     var body: some View {
         VStack {
@@ -30,7 +32,29 @@ struct PokemonDetailView: View {
                 ) {
                     Image(systemName: "star")
                 }
-        )
+            ).onAppear {
+                didAppear = true
+            }
+            .scaleEffect(didAppear ? 1 : 2)
+            .opacity(didAppear ? 1 : 0)
+            .animation(.linear)
+            .background(didAppear ? Color.blue : .white)
+            .clipShape(RoundedRectangle(cornerRadius: didAppear ? 60 : 0))
+            .padding()
+            .animation(.interpolatingSpring(stiffness: 10, damping: 1)
+                        .speed(3)
+                        .delay(0.5)
+            )
+            .onTapGesture {
+                withAnimation {
+                    catchPokemon.toggle()
+                }
+            }
+            if catchPokemon {
+                Text("Pokemon is caught")
+                    .font(.headline)
+                    .transition(.opacity.combined(with: .slide))
+            }
     }
 }
 
