@@ -8,27 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    //let pokemons: [Pokemon] = Pokemon.testList
+    let pokemons: [Pokemon] = Pokemon.testList
 
-     //var body: some View {
-         //List(pokemons) { pokemon in
-           //  PokemonCell(pokemon: pokemon)
-         //}
-     //}
-    
-    var columns = [
-        GridItem(.adaptive(minimum: 250), spacing: 0, alignment: .topLeading)
-    ]
-
-    var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 0) {
-                ForEach(0 ..< 20) { item in
-                    PokemonCell(pokemon: .testPokemon)
-                }
-            }
-        }
-    }
+     var body: some View {
+         NavigationView{
+             List(pokemons) { pokemon in
+                 NavigationLink(destination: PokemonDetailView(pokemon: pokemon)) {
+                     PokemonCell(pokemon: pokemon)
+                 }.navigationTitle("Pokemon's")
+             }
+         }
+     }
 }
 
 struct ContentView_Previews: PreviewProvider {

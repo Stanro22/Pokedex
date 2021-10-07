@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7385ABA6270EDB0C00C191A6 /* PokemonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7385ABA5270EDB0C00C191A6 /* PokemonDetailView.swift */; };
 		73A1AE9F270C5161007935E9 /* PokedexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A1AE9E270C5161007935E9 /* PokedexApp.swift */; };
 		73A1AEA1270C5161007935E9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A1AEA0270C5161007935E9 /* ContentView.swift */; };
 		73A1AEA3270C5163007935E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73A1AEA2270C5163007935E9 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7385ABA5270EDB0C00C191A6 /* PokemonDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailView.swift; sourceTree = "<group>"; };
 		73A1AE9B270C5161007935E9 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73A1AE9E270C5161007935E9 /* PokedexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexApp.swift; sourceTree = "<group>"; };
 		73A1AEA0270C5161007935E9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				73A1AEA4270C5163007935E9 /* Preview Content */,
 				73A1AECA270C588D007935E9 /* PokemonCell.swift */,
 				73A1AECC270C5E3F007935E9 /* Pokemon.swift */,
+				7385ABA5270EDB0C00C191A6 /* PokemonDetailView.swift */,
 			);
 			path = Pokedex;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73A1AEA1270C5161007935E9 /* ContentView.swift in Sources */,
+				7385ABA6270EDB0C00C191A6 /* PokemonDetailView.swift in Sources */,
 				73A1AECD270C5E3F007935E9 /* Pokemon.swift in Sources */,
 				73A1AE9F270C5161007935E9 /* PokedexApp.swift in Sources */,
 				73A1AECB270C588D007935E9 /* PokemonCell.swift in Sources */,
