@@ -7,26 +7,56 @@
 
 import Foundation
 
-struct Pokemon: Identifiable {
- let id: Int
- let name: String
- let abilityCount: Int
+struct Pokemon: Decodable, Identifiable {
+    let id = UUID()
+    let name: String
+    let url: URL
 
- var imageName: String {
-     return name
- }
+    enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case url = "url"
+    }
+}
 
- var originalName: String {
-     return "\(imageName)Original"
- }
+struct PokemonDetail: Decodable {
+    let id: Int
+    let name: String
+    let imageUrl: URL
 
- static let testPokemon = Pokemon(id: 1, name: "bulbasaur", abilityCount: 3)
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case sprites = "sprites"
+    }
 
- static let testList = [
-    Pokemon(id: 1, name: "bulbasaur", abilityCount: 3),
-    Pokemon(id: 4, name: "charmander", abilityCount: 5),
-    Pokemon(id: 7, name: "squirtle", abilityCount: 3),
-    Pokemon(id: 203, name: "ditto", abilityCount: 0),
-    Pokemon(id: 132, name: "mewtwo", abilityCount: 10)
- ]
+    enum SpritesCodingKeys: String, CodingKey {
+        case other = "other"
+    }
+
+    enum SpritesOtherCodingKeys: String, CodingKey {
+        case officialArtwork = "official-artwork"
+    }
+
+    enum SpritesOtherOfficialArtworkCodingKeys: String, CodingKey {
+        case frontDefault = "front_default"
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(Int.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+
+        let officialArtworkContainer = try container.nestedContainer( // sprites
+            keyedBy: SpritesCodingKeys.self,
+            forKey: .sprites
+        ).nestedContainer( // other
+            keyedBy: SpritesOtherCodingKeys.self,
+            forKey: .other
+        ).nestedContainer( // official artwork
+            keyedBy: SpritesOtherOfficialArtworkCodingKeys.self,
+            forKey: .officialArtwork
+        )
+
+        imageUrl = try officialArtworkContainer.decode(URL.self, forKey: .frontDefault)
+    }
 }

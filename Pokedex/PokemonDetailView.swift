@@ -8,60 +8,68 @@
 import SwiftUI
 
 struct PokemonDetailView: View {
-    let pokemon: Pokemon
-    @Environment(\.presentationMode) private var presentationMode
-    @State private var didAppear = false
-    @State private var catchPokemon = false
+    var pokemon: Pokemon
+    @State private var pokemonDetails: PokemonDetail? = nil
+    @State private var pokemonImage: UIImage? = nil
     
     var body: some View {
-        VStack {
-            Image(pokemon.originalName)
-                .resizable()
-                .frame(width: 200, height: 200)
-                .aspectRatio(contentMode: .fit)
+        if let pokemonDetails = pokemonDetails {
+            Text("\(pokemon.name)")
+                .bold()
+            if let pokemonImage = pokemonImage {
+                Image(uiImage: pokemonImage)
+                    .resizable()
+                    .padding()
+                    .frame(width: 400, height: 400)
+            } else{
+                ProgressView("Loading pokemonImage")
+                    .onAppear{
+                        PokemonAPI.shared.getImage(for: pokemonDetails) { (result) in
+                            switch result {
+                            case .success(let response):
+                                self.pokemonImage = response
+                            case .failure(let error):
+                                switch error {
+                                case .urlError(let urlError):
+                                    print("URL Error: \(String(describing: urlError))")
+                                case .decodingError(let decodingError):
+                                    print("Decoding Error: \(String(describing: decodingError))")
+                                case .genericError(let error):
+                                    print("Error: \(String(describing: error))")
+                                }
+                            }
+                           }
+                    }
+            }
                 
-        }.navigationTitle(pokemon.name)
-            .navigationBarItems(
-                //leading:
-                //Button("Go back") {
-                    //presentationMode.wrappedValue.dismiss()
-                //},
-                trailing:
-                NavigationLink(destination:
-                    Text("My favourite pokemon is: \(pokemon.name)")
-                ) {
-                    Image(systemName: "star")
+        } else{
+            ProgressView("Loading pokemonDetails")
+                .onAppear {
+                    PokemonAPI.shared.getDetails(of: pokemon){ (result) in
+                        switch result {
+                        case .success(let response):
+                            self.pokemonDetails = response
+                        case .failure(let error):
+                            switch error {
+                            case .urlError(let urlError):
+                                print("URL Error: \(String(describing: urlError))")
+                            case .decodingError(let decodingError):
+                                print("Decoding Error: \(String(describing: decodingError))")
+                            case .genericError(let error):
+                                print("Error: \(String(describing: error))")
+                            }
+                        }
+                       }
+                    
                 }
-            ).onAppear {
-                didAppear = true
-            }
-            .scaleEffect(didAppear ? 1 : 2)
-            .opacity(didAppear ? 1 : 0)
-            .animation(.linear)
-            .background(didAppear ? Color.blue : .white)
-            .clipShape(RoundedRectangle(cornerRadius: didAppear ? 60 : 0))
-            .padding()
-            .animation(.interpolatingSpring(stiffness: 10, damping: 1)
-                        .speed(3)
-                        .delay(0.5)
-            )
-            .onTapGesture {
-                withAnimation {
-                    catchPokemon.toggle()
-                }
-            }
-            if catchPokemon {
-                Text("Pokemon is caught")
-                    .font(.headline)
-                    .transition(.opacity.combined(with: .slide))
-            }
-    }
-}
-
-struct PokemonDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView{
-            PokemonDetailView(pokemon: Pokemon.testPokemon)
         }
     }
 }
+
+//struct PokemonDetailView_Previews: PreviewProvider {
+  //  static var previews: some View {
+    //    NavigationView{
+            //PokemonDetailView()
+       // }
+  //  }
+//}
